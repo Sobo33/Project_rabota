@@ -1,0 +1,49 @@
+@startuml
+left to right direction
+
+actor "Студент" as student
+actor "Преподаватель" as teacher
+actor "Администратор" as admin
+actor "Платёжная система" as payment
+
+rectangle "Система онлайн-обучения" {
+    usecase "Просмотреть курсы" as ViewCourses
+    usecase "Записаться на курс" as EnrollCourse
+    usecase "Оплатить курс" as PayCourse
+    usecase "Проходить уроки" as StudyLessons
+    usecase "Пройти тест" as PassTest
+    usecase "Получить оценку" as GetGrade
+    usecase "Загрузить материалы" as UploadMaterials
+    usecase "Выставить оценку" as SetGrade
+    usecase "Отслеживать активные сессии" as ManageUsers
+    usecase "Авторизоваться" as Auth
+}
+
+student --> ViewCourses
+student --> EnrollCourse
+student --> PayCourse
+student --> StudyLessons
+student --> PassTest
+student --> GetGrade
+
+teacher --> UploadMaterials
+teacher --> SetGrade
+teacher --> ViewCourses
+
+admin --> ManageUsers
+admin --> ViewCourses
+
+payment --> PayCourse
+
+EnrollCourse <|-- Auth : <<include>>
+PayCourse <|-- Auth : <<include>>
+StudyLessons <|-- Auth : <<include>>
+PassTest <|-- Auth : <<include>>
+SetGrade <|-- Auth : <<include>>
+ManageUsers <|-- Auth : <<include>>
+
+PayCourse <|-- EnrollCourse : <<extend>>
+GetGrade <|-- PassTest : <<extend>>
+SetGrade <|-- PassTest : <<extend>>
+
+@enduml
