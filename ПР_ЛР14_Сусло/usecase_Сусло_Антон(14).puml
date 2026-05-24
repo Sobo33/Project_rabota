@@ -35,15 +35,14 @@ admin --> ViewCourses
 
 payment --> PayCourse
 
-EnrollCourse <|-- Auth : <<include>>
-PayCourse <|-- Auth : <<include>>
-StudyLessons <|-- Auth : <<include>>
-PassTest <|-- Auth : <<include>>
-SetGrade <|-- Auth : <<include>>
+EnrollCourse <|-- Auth : <<extend>>
+PayCourse <|-- Auth : <<extend>>
+StudyLessons <|-- Auth : <<extend>>
+PassTest <|-- Auth : <<extend>>
+SetGrade <|-- Auth : <<extend>>
 ManageUsers <|-- Auth : <<include>>
-
-PayCourse <|-- EnrollCourse : <<extend>>
-GetGrade <|-- PassTest : <<extend>>
-SetGrade <|-- PassTest : <<extend>>
+PayCourse <|-- EnrollCourse : <<include>>
+GetGrade <|-- PassTest : <<include>>
+SetGrade <|-- PassTest : <<include>>
 
 @enduml
